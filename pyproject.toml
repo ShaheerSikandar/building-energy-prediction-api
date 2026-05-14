@@ -1,0 +1,16 @@
+[project]
+name = "ml-fastapi-project"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.136.1",
+    "joblib>=1.5.3",
+    "jupyter>=1.1.1",
+    "numpy>=2.4.4",
+    "openpyxl>=3.1.5",
+    "pandas>=3.0.3",
+    "scikit-learn>=1.8.0",
+    "uvicorn>=0.46.0",
+]

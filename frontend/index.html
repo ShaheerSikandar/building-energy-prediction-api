@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Energy Prediction App</title>
+</head>
+<body>
+    <h1>Building Heating Load Prediction</h1>
+
+    <form id="predictionForm">
+        <input type="number" step="any" id="relative_compactness" placeholder="Relative Compactness" required><br>
+        <input type="number" step="any" id="surface_area" placeholder="Surface Area" required><br>
+        <input type="number" step="any" id="wall_area" placeholder="Wall Area" required><br>
+        <input type="number" step="any" id="roof_area" placeholder="Roof Area" required><br>
+        <input type="number" step="any" id="overall_height" placeholder="Overall Height" required><br>
+        <input type="number" id="orientation" placeholder="Orientation" required><br>
+        <input type="number" step="any" id="glazing_area" placeholder="Glazing Area" required><br>
+        <input type="number" id="glazing_area_distribution" placeholder="Glazing Area Distribution" required><br>
+
+        <button type="submit">Predict</button>
+    </form>
+
+    <h2 id="result"></h2>
+
+    <script>
+        document.getElementById("predictionForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const data = {
+                relative_compactness: parseFloat(document.getElementById("relative_compactness").value),
+                surface_area: parseFloat(document.getElementById("surface_area").value),
+                wall_area: parseFloat(document.getElementById("wall_area").value),
+                roof_area: parseFloat(document.getElementById("roof_area").value),
+                overall_height: parseFloat(document.getElementById("overall_height").value),
+                orientation: parseInt(document.getElementById("orientation").value),
+                glazing_area: parseFloat(document.getElementById("glazing_area").value),
+                glazing_area_distribution: parseInt(document.getElementById("glazing_area_distribution").value)
+            };
+
+            const response = await fetch("http://127.0.0.1:8000/predict", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+
+            document.getElementById("result").innerText =
+                "Predicted Heating Load: " + result.predicted_heating_load;
+        });
+    </script>
+</body>
+</html>
