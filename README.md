@@ -34,4 +34,37 @@ Example input:
   "orientation": 2,
   "glazing_area": 0.0,
   "glazing_area_distribution": 0
-}
+} 
+```
+
+## Run Locally
+
+Start API:
+
+```bash
+uvicorn app.main:app --reload
+```
+Open Swagger Docs:
+http://127.0.0.1:8000/docs
+
+## Frontend
+
+- Open:frontend/index.html in your browser.
+
+## Run with Docker
+
+Build image:
+
+```bash
+docker build -t energy-prediction-api .
+```
+
+Run container:
+
+```bash
+docker run -p 8000:8000 energy-prediction-api
+```
+
+Open:
+
+http://127.0.0.1:8000/docs
